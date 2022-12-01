@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.list h3 {
+  margin: 0 0 0.75rem 0;
+}
+.description {
+  font-style: italic;
+}
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #ff833c;
+  margin-top: 0.25rem;
+}
