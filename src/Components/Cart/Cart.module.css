@@ -1,0 +1,38 @@
+.cartItems {
+  list-style: none;
+  padding: 0;
+  border-bottom: 2px solid #ff833c;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.cartItems li {
+  margin-bottom: 1rem;
+}
+.amount {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: bold;
+  align-items: center;
+}
+.action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem;
+}
+.action button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  outline: none;
+  border-radius: 25px;
+  border: 1px solid #ff833c;
+  font-weight: bold;
+}
+.order {
+  background: #ff833c;
+}
+.order:hover,
+.order:active {
+  background: #ff5e00;
+}
