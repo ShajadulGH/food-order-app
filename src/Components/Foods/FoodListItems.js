@@ -1,4 +1,5 @@
 import styles from "./FoodListItems.module.css";
+import Form from "./Form";
 const FoodListItems = (props) => {
   return (
     <li className={styles.list}>
@@ -8,7 +9,9 @@ const FoodListItems = (props) => {
         <div className={styles.price}>৳ {props.price.toFixed(2)}</div>
       </div>
 
-      <div></div>
+      <div>
+        <Form></Form>
+      </div>
     </li>
   );
 };
