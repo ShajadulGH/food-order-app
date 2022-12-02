@@ -1,6 +1,19 @@
+import React, { useContext } from "react";
 import styles from "./FoodListItems.module.css";
 import Form from "./Form";
+import CartContext from "../Store/cart-context";
+
 const FoodListItems = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const cartItemHandler = (num) => {
+    cartCtx.addItem({
+      amount: num,
+      name: props.name,
+      price: props.price,
+      description: props.description,
+    });
+  };
   return (
     <li className={styles.list}>
       <div>
@@ -10,7 +23,7 @@ const FoodListItems = (props) => {
       </div>
 
       <div>
-        <Form></Form>
+        <Form numOfitem={cartItemHandler}></Form>
       </div>
     </li>
   );

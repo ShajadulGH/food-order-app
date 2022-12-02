@@ -1,15 +1,35 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import CartContext from "./cart-context";
+const defaultCartIteams = {
+  totalAmount: 0,
+  carts: [],
+};
+const processCartItems = (state, action) => {
+  if (action.type === "CART_ITEMS") {
+    const storingIteam = state.carts.concat(action.items);
+    const storingAmount =
+      state.totalAmount + action.items.amount * action.items.price;
+    return {
+      totalAmount: storingAmount,
+      carts: storingIteam,
+    };
+  }
+  return defaultCartIteams;
+};
 const CartProvider = (props) => {
-  const [itemAmount, setItemamount] = useState(0);
+  const [cartItems, dispatchCartIteams] = useReducer(
+    processCartItems,
+    defaultCartIteams
+  );
   const addIteamHandler = (item) => {
-    setItemamount(item.amount + itemAmount);
+    console.log(item);
+    dispatchCartIteams({ type: "CART_ITEMS", items: item });
   };
   const cartAmount = {
-    amount: itemAmount,
+    items: cartItems.carts,
+    amount: cartItems.totalAmount,
     addItem: addIteamHandler,
   };
-
   return (
     <CartContext.Provider value={cartAmount}>
       {props.children}

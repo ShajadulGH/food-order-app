@@ -1,9 +1,7 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Form.module.css";
 import Input from "../UI/Input";
-import CartContext from "../Store/cart-context";
 const Form = (props) => {
-  const cartCtx = useContext(CartContext);
   const takingAmount = useRef();
   const [amountIsValid, setAmountIsValid] = useState(true);
   const addItemHandler = (event) => {
@@ -19,9 +17,7 @@ const Form = (props) => {
       return;
     }
     setAmountIsValid(true);
-    cartCtx.addItem({
-      amount: numberAmount,
-    });
+    props.numOfitem(numberAmount);
   };
   return (
     <form className={styles.form}>

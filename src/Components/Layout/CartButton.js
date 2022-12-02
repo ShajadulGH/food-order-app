@@ -3,7 +3,9 @@ import styles from "./CartButton.module.css";
 import CartContext from "../Store/cart-context";
 const CardButton = (props) => {
   const cartCtx = useContext(CartContext);
-  const cartNumber = cartCtx.amount;
+  const cartNumber = cartCtx.items.reduce((acc, item) => {
+    return acc + item.amount;
+  }, 0);
   return (
     <button onClick={props.onClick} className={styles.button}>
       <span className={styles.icon}>
