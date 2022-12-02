@@ -18,7 +18,7 @@ const Cart = (props) => {
     </ul>
   );
   return (
-    <Modal>
+    <Modal onClick={props.onClick}>
       <Card>
         {cartView}
         <div className={styles.amount}>
@@ -26,7 +26,7 @@ const Cart = (props) => {
           <span>৳200.00</span>
         </div>
         <div className={styles.action}>
-          <button onClick={props.closeClick}>Close</button>
+          <button onClick={props.onClick}>Close</button>
           <button className={styles.order}>Order</button>
         </div>
       </Card>
