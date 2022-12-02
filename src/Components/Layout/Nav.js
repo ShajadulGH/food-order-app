@@ -2,7 +2,7 @@ import Image from "./Image";
 import { Fragment } from "react";
 import styles from "./Nav.module.css";
 import CardButton from "./CartButton";
-import Cart from "./Components/Cart/Cart";
+import Cart from "../Cart/Cart";
 const Nav = () => {
   return (
     <Fragment>
