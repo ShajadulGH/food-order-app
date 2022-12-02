@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import "./App.css";
 import Foods from "./Components/Foods/Foods";
 import Cart from "./Components/Cart/Cart";
+import CartProvider from "./Components/Store/CartProvider";
 
 function App() {
   const [modalShowHide, setModalShowHide] = useState(false);
@@ -14,9 +15,11 @@ function App() {
   };
   return (
     <Fragment>
-      {modalShowHide && <Cart onClick={modalHide} />}
-      <Nav onClick={modalShow} />
-      <Foods />
+      <CartProvider>
+        {modalShowHide && <Cart onClick={modalHide} />}
+        <Nav onClick={modalShow} />
+        <Foods />
+      </CartProvider>
     </Fragment>
   );
 }

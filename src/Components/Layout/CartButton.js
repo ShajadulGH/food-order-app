@@ -1,5 +1,9 @@
+import React, { useContext } from "react";
 import styles from "./CartButton.module.css";
+import CartContext from "../Store/cart-context";
 const CardButton = (props) => {
+  const cartCtx = useContext(CartContext);
+  const cartNumber = cartCtx.amount;
   return (
     <button onClick={props.onClick} className={styles.button}>
       <span className={styles.icon}>
@@ -8,7 +12,7 @@ const CardButton = (props) => {
         </svg>
       </span>
       <span>Cart</span>
-      <span className={styles.badge}>2</span>
+      <span className={styles.badge}>{cartNumber}</span>
     </button>
   );
 };
