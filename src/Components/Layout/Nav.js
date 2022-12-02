@@ -2,6 +2,7 @@ import Image from "./Image";
 import { Fragment } from "react";
 import styles from "./Nav.module.css";
 import CardButton from "./CartButton";
+import Cart from "./Components/Cart/Cart";
 const Nav = () => {
   return (
     <Fragment>
@@ -10,6 +11,7 @@ const Nav = () => {
         <CardButton></CardButton>
       </header>
       <Image></Image>
+      <Cart />
     </Fragment>
   );
 };
