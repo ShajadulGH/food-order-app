@@ -22,7 +22,6 @@ const CartProvider = (props) => {
     defaultCartIteams
   );
   const addIteamHandler = (item) => {
-    console.log(item);
     dispatchCartIteams({ type: "CART_ITEMS", items: item });
   };
   const cartAmount = {

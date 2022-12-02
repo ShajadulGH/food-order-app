@@ -7,6 +7,25 @@
 }
 .cartItems li {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.name {
+  font-size: 1rem;
+}
+.price_amount {
+  font-size: 0.75rem;
+}
+.price {
+  color: #ff833c;
+}
+.price_amount {
+  display: flex;
+  gap: 50px;
+}
+.cartItems li p {
+  margin-left: 0;
 }
 .amount {
   display: flex;
