@@ -1,6 +1,6 @@
 import Card from "../UI/Card";
 import styles from "./Cart.module.css";
-
+import Modal from "../UI/Modal";
 const Cart = (props) => {
   const cartIteams = [
     {
@@ -18,7 +18,7 @@ const Cart = (props) => {
     </ul>
   );
   return (
-    <div className={props.className}>
+    <Modal>
       <Card>
         {cartView}
         <div className={styles.amount}>
@@ -30,7 +30,7 @@ const Cart = (props) => {
           <button className={styles.order}>Order</button>
         </div>
       </Card>
-    </div>
+    </Modal>
   );
 };
 export default Cart;
