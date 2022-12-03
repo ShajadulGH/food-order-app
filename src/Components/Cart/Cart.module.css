@@ -1,39 +1,10 @@
 .cartItems {
   list-style: none;
   padding: 0;
-  border-bottom: 2px solid #ff833c;
   font-size: 1.25rem;
   font-weight: bold;
 }
-.cartItems li {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-}
-.name {
-  font-size: 1rem;
-}
-.price_amount {
-  font-size: 0.75rem;
-}
-.price {
-  color: #ff833c;
-}
-.price_amount {
-  display: flex;
-  gap: 50px;
-}
-.cartItems li p {
-  margin-left: 0;
-}
-.amount {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.5rem;
-  font-weight: bold;
-  align-items: center;
-}
+
 .action {
   display: flex;
   justify-content: flex-end;
@@ -54,4 +25,11 @@
 .order:hover,
 .order:active {
   background: #ff5e00;
+}
+.amount {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: bold;
+  align-items: center;
 }

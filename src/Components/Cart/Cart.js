@@ -3,18 +3,14 @@ import Card from "../UI/Card";
 import styles from "./Cart.module.css";
 import Modal from "../UI/Modal";
 import CartContext from "../Store/cart-context";
+import List from "./List";
 const Cart = (props) => {
   const ctxCart = useContext(CartContext);
+  const cartLength = ctxCart.items.length < 1;
   const cartView = (
     <ul className={styles.cartItems}>
       {ctxCart.items.map((item) => (
-        <li>
-          <div className={styles.name}>{item.name}</div>
-          <div className={styles.price_amount}>
-            <p className={styles.price}>৳{item.price}</p>
-            <p>{item.amount}x</p>
-          </div>
-        </li>
+        <List name={item.name} amount={item.amount} price={item.price} />
       ))}
     </ul>
   );
@@ -28,7 +24,7 @@ const Cart = (props) => {
         </div>
         <div className={styles.action}>
           <button onClick={props.onClick}>Close</button>
-          <button className={styles.order}>Order</button>
+          {!cartLength && <button className={styles.order}>Order</button>}
         </div>
       </Card>
     </Modal>
