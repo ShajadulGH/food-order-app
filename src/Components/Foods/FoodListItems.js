@@ -8,6 +8,7 @@ const FoodListItems = (props) => {
 
   const cartItemHandler = (num) => {
     cartCtx.addItem({
+      id: props.id,
       amount: num,
       name: props.name,
       price: props.price,

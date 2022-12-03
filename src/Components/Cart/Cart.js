@@ -10,7 +10,13 @@ const Cart = (props) => {
   const cartView = (
     <ul className={styles.cartItems}>
       {ctxCart.items.map((item) => (
-        <List name={item.name} amount={item.amount} price={item.price} />
+        <List
+          id={item.id}
+          key={item.id}
+          name={item.name}
+          amount={item.amount}
+          price={item.price}
+        />
       ))}
     </ul>
   );

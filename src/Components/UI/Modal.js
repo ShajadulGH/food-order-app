@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import classes from "./Modal.module.css";
 const ModalPortal = (props) => {
   return (
-    <div onClick={props.onClick} className={classes.backdrop}>
+    <div className={classes.backdrop}>
       <div className={classes.modal}>{props.children}</div>
     </div>
   );

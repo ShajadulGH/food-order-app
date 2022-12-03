@@ -1,5 +1,20 @@
+import React, { useContext } from "react";
+import CartContext from "../Store/cart-context";
 import styles from "./List.module.css";
 const List = (props) => {
+  const cartCtx = useContext(CartContext);
+  const cartItemHandler = () => {
+    cartCtx.addItem({
+      id: props.id,
+      amount: 1,
+      name: props.name,
+      price: props.price,
+      description: props.description,
+    });
+  };
+  const rmvCartItemHandler = () => {
+    cartCtx.removeItem(props.id);
+  };
   return (
     <li className={styles.list}>
       <div>
@@ -11,8 +26,8 @@ const List = (props) => {
       </div>
 
       <div className={styles.button}>
-        <button>+</button>
-        <button>-</button>
+        <button onClick={cartItemHandler}>+</button>
+        <button onClick={rmvCartItemHandler}>-</button>
       </div>
     </li>
   );
