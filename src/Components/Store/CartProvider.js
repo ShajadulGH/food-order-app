@@ -28,9 +28,26 @@ const processCartItems = (state, action) => {
       carts: storingItem,
     };
   }
-  // if (action.type === "REMOVE") {
-  //   console.log("Remove Item");
-  // }
+  if (action.type === "REMOVE") {
+    console.log("Remove Item");
+    const existingCartItemIndex = state.carts.findIndex(
+      (item) => item.id === action.id
+    );
+    const existingItem = state.carts[existingCartItemIndex];
+    const updatedTotalAmount = state.totalAmount - existingItem.price;
+    let updatedItems;
+    if (existingItem.amount === 1) {
+      updatedItems = state.carts.filter((item) => item.id !== action.id);
+    } else {
+      const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
+      updatedItems = [...state.carts];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    }
+    return {
+      carts: updatedItems,
+      totalAmount: updatedTotalAmount,
+    };
+  }
   return defaultCartIteams;
 };
 const CartProvider = (props) => {
