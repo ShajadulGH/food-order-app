@@ -5,29 +5,22 @@ const defaultCartIteams = {
   carts: [],
 };
 const processCartItems = (state, action) => {
-  let storingItem;
-
   if (action.type === "CART_ITEMS") {
+    let storingItem;
     const storingAmount =
       state.totalAmount + action.items.amount * action.items.price;
     const existCartItemIndex = state.carts.findIndex(
       (item) => item.id === action.items.id
     );
-    console.log("Index" + existCartItemIndex);
     const existCartItem = state.carts[existCartItemIndex];
     if (existCartItem) {
-      console.log("if working");
-
       const newCartItem = {
         ...existCartItem,
         amount: existCartItem.amount + action.items.amount,
       };
-      console.log(newCartItem);
-
       storingItem = [...state.carts];
       storingItem[existCartItemIndex] = newCartItem;
     } else {
-      console.log("Working");
       storingItem = state.carts.concat(action.items);
     }
     return {
@@ -35,25 +28,9 @@ const processCartItems = (state, action) => {
       carts: storingItem,
     };
   }
-  if (action.type === "REMOVE_ITEM") {
-    console.log("Remove Item");
-
-    // const existCartItemIndex = state.carts.findIndex(
-    //   (item) => item.id === action.items.id
-    // );
-    // console.log("Index" + existCartItemIndex);
-    // const existCartItem = state.carts[existCartItemIndex];
-    // if (existCartItem) {
-    //   console.log("if working");
-    //   const newCartItem = {
-    //     ...existCartItem,
-    //     amount: existCartItem.amount - action.items.amount,
-    //   };
-    //   console.log(newCartItem);
-    //   storingItem = [...state.carts];
-    //   storingItem[existCartItemIndex] = newCartItem;
-    // }
-  }
+  // if (action.type === "REMOVE") {
+  //   console.log("Remove Item");
+  // }
   return defaultCartIteams;
 };
 const CartProvider = (props) => {
@@ -65,6 +42,7 @@ const CartProvider = (props) => {
     dispatchCartItems({ type: "CART_ITEMS", items: item });
   };
   const removeItemHandler = (id) => {
+    dispatchCartItems({ type: "REMOVE", id: id });
     console.log(id);
   };
   const cartAmount = {

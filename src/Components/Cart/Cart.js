@@ -6,6 +6,9 @@ import CartContext from "../Store/cart-context";
 import List from "./List";
 const Cart = (props) => {
   const ctxCart = useContext(CartContext);
+  // const cartItemRemoveHandler = (id) => {
+  //   ctxCart.removeItem(id);
+  // };
   const cartLength = ctxCart.items.length < 1;
   const cartView = (
     <ul className={styles.cartItems}>
@@ -16,6 +19,7 @@ const Cart = (props) => {
           name={item.name}
           amount={item.amount}
           price={item.price}
+          // onRemove={cartItemRemoveHandler.bind(null, item.id)}
         />
       ))}
     </ul>

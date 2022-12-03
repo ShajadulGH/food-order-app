@@ -12,6 +12,11 @@
   border: 1px solid #ff833c;
   border-radius: 5px;
 }
+.button button:hover,
+.button button:active {
+  background-color: #ff833c;
+  color: white;
+}
 .name {
   font-size: 1rem;
 }
