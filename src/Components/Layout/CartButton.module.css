@@ -47,3 +47,8 @@
     transform: scale(1);
   }
 }
+@media (max-device-width: 480px) {
+  .button {
+    padding: 0.8rem 1.5rem;
+  }
+}

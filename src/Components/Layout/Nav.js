@@ -6,7 +6,7 @@ const Nav = (props) => {
   return (
     <Fragment>
       <header className={styles.header}>
-        <h2>House of Burger</h2>
+        <h2 className={styles.h2}>House of Burger</h2>
         <CardButton onClick={props.onClick}></CardButton>
       </header>
       <Image></Image>
