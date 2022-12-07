@@ -10,6 +10,7 @@
   font-weight: bold;
   color: black;
   box-shadow: rgba(32, 32, 32, 0.35) 0px 5px 15px;
+  -webkit-tap-highlight-color: transparent;
 }
 .button:hover,
 .button:active {
