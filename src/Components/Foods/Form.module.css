@@ -21,4 +21,7 @@
   border-color: #ff7829;
 }
 @media (max-device-width: 480px) {
+  .form button {
+    font-size: 13px;
+  }
 }
