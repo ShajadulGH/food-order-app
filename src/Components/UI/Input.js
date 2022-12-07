@@ -3,8 +3,12 @@ import React, { forwardRef } from "react";
 const Input = (props, ref) => {
   return (
     <div className={styles.input}>
-      <label htmlFor={props.input.id}>{props.label}</label>
-      <input ref={ref} {...props.input}></input>
+      <div>
+        <label htmlFor={props.input.id}>{props.label}</label>
+      </div>
+      <div>
+        <input ref={ref} {...props.input}></input>
+      </div>
     </div>
   );
 };

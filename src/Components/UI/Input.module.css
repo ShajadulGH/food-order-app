@@ -1,7 +1,9 @@
 .input {
   display: flex;
   align-items: center;
+  flex-direction: column;
   margin-bottom: 0.5rem;
+  gap: 10px;
 }
 
 .input label {
@@ -15,3 +17,8 @@
   font: inherit;
   padding-left: 0.5rem;
 }
+/* @media (max-device-width: 480px) {
+  .input label {
+    font-size: 0.8rem;
+  }
+} */
