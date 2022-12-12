@@ -6,33 +6,34 @@ const FoodList = () => {
   const [allFoods, setAllFoods] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const fetchFoods = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(
-        "https://food-order-app-7eb2e-default-rtdb.firebaseio.com/foods.json"
-      );
-      if (!response.ok) {
-        throw new Error("Sorry, Something went wrong!");
-      }
-      const data = await response.json();
 
-      let loadedData = [];
-      for (const key in data) {
-        loadedData.push({
-          id: key,
-          name: data[key].name,
-          description: data[key].description,
-          price: data[key].price,
-        });
-      }
-      setAllFoods(loadedData);
-      setIsLoading(false);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
   useEffect(() => {
+    const fetchFoods = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          "https://food-order-app-7eb2e-default-rtdb.firebaseio.com/foods.json"
+        );
+        if (!response.ok) {
+          throw new Error("Sorry, Something went wrong!");
+        }
+        const data = await response.json();
+
+        let loadedData = [];
+        for (const key in data) {
+          loadedData.push({
+            id: key,
+            name: data[key].name,
+            description: data[key].description,
+            price: data[key].price,
+          });
+        }
+        setAllFoods(loadedData);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
     fetchFoods();
   }, []);
   const foodList = allFoods.map((food) => (
