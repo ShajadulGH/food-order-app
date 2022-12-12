@@ -42,6 +42,24 @@ const OrderForm = (props) => {
     if (!formIsValid) {
       return;
     }
+    const cartItems = crtCtx.items;
+    const userData = {
+      name: nameInputValue,
+      phone: phoneInputValue,
+      address: addressInputValue,
+    };
+    fetch(
+      "https://food-order-app-7eb2e-default-rtdb.firebaseio.com/orders.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          user: userData,
+          orderedItems: cartItems,
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data));
     console.log("Summitted!!!");
     console.log(nameInputValue);
     console.log(phoneInputValue);
