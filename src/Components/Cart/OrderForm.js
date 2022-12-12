@@ -1,9 +1,12 @@
 import useValidity from "../Hooks/use-validity";
 import styles from "./OrderForm.module.css";
 import CartContext from "../Store/cart-context";
-import { useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 const OrderForm = (props) => {
   const crtCtx = useContext(CartContext);
+  const [orderCompleted, setOrderCompleted] = useState(false);
+  const [orderCompliting, setOrderCompliting] = useState(false);
+  const [error, setError] = useState(false);
   // Using custom Hook for First Name
   const {
     inputValue: nameInputValue,
@@ -39,6 +42,7 @@ const OrderForm = (props) => {
   // After submit form
   const submitHandler = (event) => {
     event.preventDefault();
+    setOrderCompliting(true);
     if (!formIsValid) {
       return;
     }
@@ -48,22 +52,38 @@ const OrderForm = (props) => {
       phone: phoneInputValue,
       address: addressInputValue,
     };
-    fetch(
-      "https://food-order-app-7eb2e-default-rtdb.firebaseio.com/orders.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          user: userData,
-          orderedItems: cartItems,
-        }),
+    const orderSend = async () => {
+      const response = await fetch(
+        "https://food-order-app-7eb2e-default-rtdb.firebaseio.com/orders.json",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            user: userData,
+            orderedItems: cartItems,
+          }),
+        }
+      );
+      if (response.ok) {
+        setOrderCompliting(false);
+        setOrderCompleted(true);
+      } else {
+        throw new Error("Sorry, Something went wrong!");
       }
-    )
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-    console.log("Summitted!!!");
-    console.log(nameInputValue);
-    console.log(phoneInputValue);
-    console.log(addressInputValue);
+      const data = await response.json();
+      console.log(data);
+    };
+
+    orderSend().catch((error) => {
+      setError(error.message);
+      setOrderCompliting(false);
+    });
+
+    // {
+    //   setOrderCompliting(false);
+    //   console.log(error.message);
+    //   setError(error.message);
+    // }
+
     nameReset();
     addressReset();
     phoneReset();
@@ -78,7 +98,8 @@ const OrderForm = (props) => {
   const classaddress = addressNotValid
     ? `${styles.invalid} ${styles.title}`
     : styles.title;
-  return (
+  // Splitting jsx for conditional render
+  const form = (
     <form onSubmit={submitHandler}>
       <div className={styles.info}>Informations for order</div>
       <div className={classFName}>
@@ -129,6 +150,24 @@ const OrderForm = (props) => {
         </button>
       </div>
     </form>
+  );
+  const formSubmitting = <div className={styles.info}>Order Sending...</div>;
+  const formSubmitted = (
+    <Fragment>
+      <div className={styles.orderMessage}>Order Sent Successfully</div>
+      <div className={styles.action}>
+        <button onClick={props.onClick}>Close</button>
+      </div>
+    </Fragment>
+  );
+  const formSubmitFailed = <div className={styles.failed}>{error}</div>;
+  return (
+    <Fragment>
+      {!orderCompliting && !orderCompleted ? form : ""}
+      {orderCompliting ? formSubmitting : ""}
+      {orderCompleted ? formSubmitted : ""}
+      {error ? formSubmitFailed : ""}
+    </Fragment>
   );
 };
 
