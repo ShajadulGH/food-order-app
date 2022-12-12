@@ -48,8 +48,8 @@ const FoodList = () => {
     <section className={styles.foods}>
       <Card>
         {isLoading && !error && (
-          <div style={{ textAlign: "center" }}>
-            <p>Loading...</p>
+          <div className={styles.pingWrapper}>
+            <div className={styles.ping}></div>
           </div>
         )}
         {error ? (
