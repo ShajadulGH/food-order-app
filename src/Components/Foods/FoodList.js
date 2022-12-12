@@ -1,35 +1,30 @@
+import { useEffect, useState } from "react";
 import FoodListItems from "./FoodListItems";
-
 import styles from "./FoodList.module.css";
 import Card from "../UI/Card";
-const DummyFoods = [
-  {
-    id: "f1",
-    name: "Beef Burger",
-    description: "Loaded with Beef!",
-    price: 220,
-  },
-  {
-    id: "f2",
-    name: "Chicken Burger",
-    description: "House of Burger Special!",
-    price: 200,
-  },
-  {
-    id: "f3",
-    name: "Beef Cheese Burger",
-    description: "American, raw, meaty",
-    price: 280,
-  },
-  {
-    id: "f4",
-    name: "BBQ Burger",
-    description: "Loaded Beef with BBQ Flavour",
-    price: 320,
-  },
-];
 const FoodList = () => {
-  const foodList = DummyFoods.map((food) => (
+  const [allFoods, setAllFoods] = useState([]);
+  const fetchFoods = async () => {
+    const response = await fetch(
+      "https://food-order-app-7eb2e-default-rtdb.firebaseio.com/foods.json"
+    );
+    const data = await response.json();
+
+    let loadedData = [];
+    for (const key in data) {
+      loadedData.push({
+        id: key,
+        name: data[key].name,
+        description: data[key].description,
+        price: data[key].price,
+      });
+    }
+    setAllFoods(loadedData);
+  };
+  useEffect(() => {
+    fetchFoods();
+  }, []);
+  const foodList = allFoods.map((food) => (
     <FoodListItems
       id={food.id}
       key={food.id}
