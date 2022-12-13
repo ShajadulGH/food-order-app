@@ -46,7 +46,6 @@ const OrderForm = (props) => {
     if (!formIsValid) {
       return;
     }
-    const cartItems = crtCtx.items;
     const userData = {
       name: nameInputValue,
       phone: phoneInputValue,
@@ -59,13 +58,14 @@ const OrderForm = (props) => {
           method: "POST",
           body: JSON.stringify({
             user: userData,
-            orderedItems: cartItems,
+            orderedItems: crtCtx.items,
           }),
         }
       );
       if (response.ok) {
         setOrderCompliting(false);
         setOrderCompleted(true);
+        crtCtx.clearCart();
       } else {
         throw new Error("Sorry, Something went wrong!");
       }
